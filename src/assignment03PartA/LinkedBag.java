@@ -73,6 +73,8 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
 
         displayFinalArray(array1D);
 
+        removeFromBag(array1D);
+
         return true;
     }
 
@@ -139,6 +141,36 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
         for(T entry : array)
             System.out.print(entry + " ");
         System.out.println();
+    }
+
+    private void removeFromBag(T[] removeables)
+    {
+        System.out.println(" [-] Removing the final 1D array items from the bag...");
+
+        // create a bag to store the nodes that won't be removed
+        LinkedBag<T> tempBag = new LinkedBag<>();
+
+        // this loop is labeled, so that the inner loop can continue from the start of this one
+        nodeLoop:
+        // loop through each node in the linkedbag
+        for(Node currentNode = firstNode; currentNode != null; currentNode = currentNode.next)
+        {
+            for(T removeable : removeables)
+            {
+                if(currentNode.data.equals(removeable))
+                {
+                    //if the current entry is on the removeables list, decrement the node count and go to the next node
+                    numberOfEntries--;
+                    continue nodeLoop;
+                }
+            }
+
+            // if the current node isnt on the removeables list, add it to the temp bag
+            tempBag.add(currentNode.data);
+        }
+
+        //set the contents of this bag to that of the temp bag, which containes only the not-to-be-removed nodes.
+        this.firstNode = tempBag.firstNode;
     }
 
     private class Node {
