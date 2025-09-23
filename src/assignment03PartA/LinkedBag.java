@@ -67,10 +67,8 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
     {
         System.out.println("[+] Removing 2D test array items from the bag...");
 
-        System.out.println(" [-] Converting 2D array to 1D...");
         T[] array1D = convertArray(entries);
 
-        System.out.println(" [-] Removing duplicates in 1D array...");
         array1D = removeDuplicates(array1D);
 
         displayFinalArray(array1D);
@@ -80,6 +78,8 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
 
     private T[] convertArray(T[][] array2D)
     {
+        System.out.println(" [-] Converting 2D array to 1D...");
+        
         int arraySize = 0;
         for(T[] array : array2D)
             arraySize += array.length;
@@ -101,6 +101,8 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
 
     private T[] removeDuplicates(T[] array)
     {
+        System.out.println(" [-] Removing duplicates in 1D array...");
+        
         //Count how much smaller the new array needs to be
         int numRemovedEntries = 0;
 
