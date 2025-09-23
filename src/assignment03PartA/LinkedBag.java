@@ -47,6 +47,22 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
     }
 
     @Override
+    public T[] toArray()
+    {
+        @SuppressWarnings("unchecked")
+        T[] array = (T[]) new Object[numberOfEntries];
+
+        Node currentNode = firstNode;
+        for(int i = 0; i < this.numberOfEntries; i++)
+        {
+            array[i] = currentNode.data;
+            currentNode = currentNode.next;
+        }
+        
+        return array;
+    }
+
+    @Override
     public boolean removeAllOccurrences(T[][] entries) {
     }
 
