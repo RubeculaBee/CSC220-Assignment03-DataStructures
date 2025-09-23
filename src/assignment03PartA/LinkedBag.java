@@ -63,7 +63,41 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
     }
 
     @Override
-    public boolean removeAllOccurrences(T[][] entries) {
+    public boolean removeAllOccurrences(T[][] entries)
+    {
+        System.out.println("[+] Removing 2D test array items from the bag...");
+
+        T[] array1D = convertArray(entries);
+
+        // convertArray() Test:
+        // for(T entry : array1D)
+        //     System.out.print (entry + " ");
+        // System.out.println();
+
+        return true;
+    }
+
+    private T[] convertArray(T[][] array2D)
+    {
+        System.out.println(" [-] Converting 2D array to 1D...");
+        
+        int arraySize = 0;
+        for(T[] array : array2D)
+            arraySize += array.length;
+        
+        @SuppressWarnings("unchecked")
+        T[] array1D = (T[]) new Object[arraySize];
+
+        // this index used to count our progress through the 1D array
+        int index = 0;
+        for(T[] row : array2D)
+            for(T col : row)
+            {
+                array1D[index] = col;
+                index++;
+            }
+        
+        return array1D;
     }
 
     private class Node {
