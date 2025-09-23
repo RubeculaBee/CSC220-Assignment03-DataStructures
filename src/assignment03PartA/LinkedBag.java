@@ -6,7 +6,7 @@
  * Author: Frank M. Carrano
  * Author: Timothy M. Henry
  * Author: Duc Ta
- * Author: <First Name> <Last Name>
+ * Author: Robin Lane
  * **********************************************
  */
 
@@ -70,6 +70,11 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
         System.out.println(" [-] Converting 2D array to 1D...");
         T[] array1D = convertArray(entries);
 
+        System.out.println(" [-] Removing duplicates in 1D array...");
+        array1D = removeDuplicates(array1D);
+
+        displayFinalArray(array1D);
+
         return true;
     }
 
@@ -83,15 +88,55 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
         T[] array1D = (T[]) new Object[arraySize];
 
         // this index used to count our progress through the 1D array
-        int index = 0;
+        int i = 0;
         for(T[] row : array2D)
             for(T col : row)
             {
-                array1D[index] = col;
-                index++;
+                array1D[i] = col;
+                i++;
             }
         
         return array1D;
+    }
+
+    private T[] removeDuplicates(T[] array)
+    {
+        //Count how much smaller the new array needs to be
+        int numRemovedEntries = 0;
+
+        // For each element in the 1D array
+        for(int i = 0; i < array.length; i++)
+            // for each element ahead of the one we're currently looking at (we don't need to check ones we already checked)
+            for(int j = i+1; j < array.length; j++)
+                // we must first check if the current entry is null, because if it is we can't call .equals() from it.
+                if(array[i] != null && array[j] != null && array[j].equals(array[i]))
+                {
+                    array[j] = null;
+                    numRemovedEntries++;
+                }
+        
+        @SuppressWarnings("unchecked")
+        T[] shortArray = (T[]) new Object[array.length-numRemovedEntries];
+
+        // Keeps our place in the shorter array while we loop through the long array 
+        int i = 0;
+        for(T entry : array)
+            // if an entry wasn't removed, add it to the short array and move to the next index in the short array
+            if(entry != null)
+            {
+                shortArray[i] = entry;
+                i++;
+            }
+        
+        return shortArray;
+    }
+
+    private void displayFinalArray(T[] array)
+    {
+        System.out.print(" [>] The final 1D array now contains: ");
+        for(T entry : array)
+            System.out.print(entry + " ");
+        System.out.println();
     }
 
     private class Node {
