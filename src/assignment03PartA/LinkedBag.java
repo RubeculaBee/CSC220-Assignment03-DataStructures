@@ -16,6 +16,11 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
 
     private Node firstNode;
     private int numberOfEntries;
+    
+    public LinkedBag() {
+        firstNode = null;
+        numberOfEntries = 0;
+    }
 
     @Override
     public boolean isEmpty()
@@ -24,10 +29,10 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
         return firstNode == null;
     }
 
-
-    public LinkedBag() {
-        firstNode = null;
-        numberOfEntries = 0;
+    @Override
+    public int getCurrentSize()
+    {
+        return this.numberOfEntries;
     }
 
     @Override
