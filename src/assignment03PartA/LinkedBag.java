@@ -36,6 +36,17 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
     }
 
     @Override
+    public boolean add(T newEntry)
+    {
+        // Create a node with the new data and connect it to the node chain before the first node
+        // then by setting this new node to be the first node, it becomes part of the bag
+        // as a result, each entry in the bag is pushed up by one index
+        this.firstNode = new Node(newEntry, firstNode);
+        numberOfEntries++;
+        return true;
+    }
+
+    @Override
     public boolean removeAllOccurrences(T[][] entries) {
     }
 
