@@ -17,6 +17,14 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
     private Node firstNode;
     private int numberOfEntries;
 
+    @Override
+    public boolean isEmpty()
+    {
+        //if there is no first node, then there are no nodes at all, therefore the bag is empty
+        return firstNode == null;
+    }
+
+
     public LinkedBag() {
         firstNode = null;
         numberOfEntries = 0;
