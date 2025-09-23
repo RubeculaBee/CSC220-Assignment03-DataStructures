@@ -67,20 +67,14 @@ public final class LinkedBag<T> implements PrimaryDataStructureBagInterface<T> {
     {
         System.out.println("[+] Removing 2D test array items from the bag...");
 
+        System.out.println(" [-] Converting 2D array to 1D...");
         T[] array1D = convertArray(entries);
-
-        // convertArray() Test:
-        // for(T entry : array1D)
-        //     System.out.print (entry + " ");
-        // System.out.println();
 
         return true;
     }
 
     private T[] convertArray(T[][] array2D)
     {
-        System.out.println(" [-] Converting 2D array to 1D...");
-        
         int arraySize = 0;
         for(T[] array : array2D)
             arraySize += array.length;
