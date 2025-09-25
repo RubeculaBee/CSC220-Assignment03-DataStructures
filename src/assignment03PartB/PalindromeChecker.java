@@ -22,6 +22,9 @@ public class PalindromeChecker {
 
     private static boolean isPalindrome(String string) 
     {
+        // Remove uppercase and special characters
+        string = removeSpecialChar(string.toLowerCase());
+
         // Turn the string into a char array, wrap those chars with the Character object wrapper
         Character[] wrappedArray = wrapCharArray(string.toCharArray());
 
@@ -41,6 +44,38 @@ public class PalindromeChecker {
 
         // If we can make it through half the string and it's the same back and front, than it *is* a palindrome
         return true;
+    }
+
+    private static String removeSpecialChar(String string)
+    {
+        char[] characters = string.toCharArray();
+
+        // set every char that's not a letter to 0, and count how many need to be removed 
+        int numRemoved = 0; 
+        for(int i = 0; i < characters.length; i++)
+        {
+            // 97 = a, 122 = z
+            if(characters[i] < 97 || characters[i] > 122)
+            {
+                characters[i] = 0;
+                numRemoved++;
+            }
+        }
+
+        // new character array that is smaller based on how many were removed
+        char[] savedChars = new char[characters.length - numRemoved];
+
+        //Add each character that isn't a 0 to the smaller array
+        int i = 0;
+        for(int j = 0; j < characters.length; j++)
+            if(characters[j] != 0)
+            {
+                savedChars[i] = characters[j];
+                i++;
+            }
+
+        // turn it back into a string and return
+        return new String(savedChars);
     }
 
     private static Character[] wrapCharArray(char[] array)
