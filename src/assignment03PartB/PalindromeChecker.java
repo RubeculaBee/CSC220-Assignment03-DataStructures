@@ -6,7 +6,7 @@
  * Author: Frank M. Carrano
  * Author: Timothy M. Henry
  * Author: Duc Ta
- * Author: <First Name> <Last Name>
+ * Author: Robin Lane
  * **********************************************
  */
 
@@ -20,8 +20,38 @@ import java.util.Scanner;
 //
 public class PalindromeChecker {
 
-    private static boolean isPalindrome(String string) {
-    } 
+    private static boolean isPalindrome(String string) 
+    {
+        // Turn the string into a char array, wrap those chars with the Character object wrapper
+        Character[] wrappedArray = wrapCharArray(string.toCharArray());
+
+        // Then intilize the stack with those Characters
+        // Because of the LIFO nature of the stack, this will reverse the string (the last character will be in the front)
+        OurStack<Character> stringStack = new OurStack<Character>(wrappedArray);
+
+        // We only need to check half of the string, because palindromes are by definition symetric
+        int halfwayPoint = (int) Math.ceil( ((double) wrappedArray.length) /2 );
+        
+        for(int i = 0; i < halfwayPoint; i++)
+        {
+            // if even one character does not match, we know it's not a palindrome
+            if(!wrappedArray[i].equals(stringStack.pop()))
+                return false;
+        }
+
+        // If we can make it through half the string and it's the same back and front, than it *is* a palindrome
+        return true;
+    }
+
+    private static Character[] wrapCharArray(char[] array)
+    {
+        Character[] wrappedArray = new Character[array.length];
+
+        for(int i = 0; i < array.length; i++)
+            wrappedArray[i] = Character.valueOf(array[i]);
+
+        return wrappedArray;
+    }
 
     //
     // - Do not change the "main" method.
