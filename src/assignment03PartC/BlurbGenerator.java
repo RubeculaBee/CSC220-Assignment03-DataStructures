@@ -49,7 +49,15 @@ public class BlurbGenerator {
      */
     private String makeYString()
     {
-        return "y".repeat(rng.nextInt(10));
+        String yChain = "";
+
+        if(rng.nextBoolean())
+        {
+            yChain += "y";
+            yChain += makeYString();
+        }
+        
+        return yChain;
     }
 
     /**
@@ -57,11 +65,11 @@ public class BlurbGenerator {
      */
     private String makeMultiWhatzits()
     {
-        String whatzits = "";
+        String whatzits = makeWhatzit();
         
-        for(int i = 0; i < rng.nextInt(4) + 1; i++)
-            whatzits += makeWhatzit();
-
+        if(rng.nextBoolean())
+            whatzits += makeMultiWhatzits();
+        
         return whatzits;
 
     }
@@ -75,6 +83,7 @@ public class BlurbGenerator {
         return String.format
         (
             "%s%s%s",
+            
             "q",
             rng.nextBoolean() ? "z" : "d",
             makeWhoozit()
