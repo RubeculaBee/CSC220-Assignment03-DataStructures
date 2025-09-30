@@ -20,9 +20,12 @@ public class PascalsTriangleGenerator
     public int[] computeRow(int rowToCompute) 
     {
         if(rowToCompute > 1)
-            row = computeRow(rowToCompute - 1);
+        {
+            row = computeRow(rowToCompute - 1); // Recursive call
+            return rowSum();
+        }
         
-        return rowSum();
+        return row; // Base Case
     }
 
     private int[] rowSum()
