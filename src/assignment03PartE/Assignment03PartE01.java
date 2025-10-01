@@ -18,7 +18,7 @@ public class Assignment03PartE01 {
         expandedAlgorithm();
     }
 
-    static void originalAlgorithm()
+    private static void originalAlgorithm()
     {
         int i, n = 5, sum = 5;
         for (i = 5; i < 3 * n; i++) {
@@ -27,7 +27,7 @@ public class Assignment03PartE01 {
         System.out.println(sum);   
     }
 
-    static void expandedAlgorithm()
+    private static void expandedAlgorithm()
     {
         int i, n, sum;
         n = 5;
