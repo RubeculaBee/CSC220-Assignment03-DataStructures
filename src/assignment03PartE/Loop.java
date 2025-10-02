@@ -61,3 +61,15 @@ final class LoopB extends Loop
                 sum = sum + j;
     }
 }
+
+final class LoopC extends Loop
+{
+    void doLoop(int n)
+    {
+        int sum = 0, i, j, k;
+        for (i = 1; i <= n; i++)
+            for (j = 1; j <= n; j++)
+                for (k = 1; k <= n; k++)
+                    sum = sum + k;
+    }
+}
