@@ -18,6 +18,26 @@ abstract sealed class Loop
     {
         System.out.printf("Time Elapsed: %5dms\n", runTime);
     }
+
+    private class Timer
+    {
+        private long startTime;
+        private long endTime;
+
+        public Timer() {};
+
+        public void start()
+        {
+            this.startTime = System.currentTimeMillis();
+        }
+
+        public long stop()
+        {
+            this.endTime = System.currentTimeMillis();
+
+            return this.endTime - this.startTime;
+        }
+    }
 }
 
 final class LoopA extends Loop
