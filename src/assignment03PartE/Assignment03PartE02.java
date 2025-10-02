@@ -33,6 +33,10 @@ public class Assignment03PartE02
             System.out.println();
 
             testTimer();
+
+            System.out.println();
+
+            compareTimes();
         }
     }
 
@@ -77,5 +81,15 @@ public class Assignment03PartE02
         b.run(n);
         System.out.println("Done");
         b.displayTime();
+    }
+
+    private static void compareTimes()
+    {
+        if(a.runTime < b.runTime)
+            System.out.println("Loop A Completed First!");
+        else if(a.runTime > b.runTime)
+            System.out.println("Loop B Completed First!");
+        else
+            System.out.println("Both Loops completed in the same time!");
     }
 }
