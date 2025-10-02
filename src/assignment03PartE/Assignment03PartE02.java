@@ -14,10 +14,10 @@ import java.util.Scanner;
 
 public class Assignment03PartE02
 {
-    static int n;
-    static LoopA a = new LoopA();
-    static LoopB b = new LoopB();
-    static Scanner input = new Scanner(System.in);
+    private static int n;
+    private static LoopA a = new LoopA();
+    private static LoopB b = new LoopB();
+    private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args)
     {
