@@ -10,6 +10,7 @@
 
 package assignment03PartE;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Assignment03PartE02
@@ -17,36 +18,37 @@ public class Assignment03PartE02
     static int n;
     static LoopA a = new LoopA();
     static LoopB b = new LoopB();
+    static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args)
     {
         while(true)
         {
-            System.out.println("Please choose a value of n for the each loop (or type ! for automatic)");
+            System.out.println();
+
+            System.out.println("Please choose a value of n for each loop");
             n = getInput();
 
             System.out.println();
-            if(n >= 0)
-                testTimer();
+
+            testTimer();
+            
+            System.out.println();
+            
+            requestExit();
         }
     }
 
     private static int getInput()
     {
-        Scanner input = new Scanner(System.in);
         int n;
-
         while(true)
         {
             System.out.print("  n = ");
-            String response = input.nextLine();
 
-            if(response == "!")
-                return -1;
-            
             try {
-                n = Integer.parseInt(response);
-            } catch (NumberFormatException e) {
+                n = input.nextInt();
+            } catch (InputMismatchException e) {
                 System.err.println("You must enter an Integer.");
                 continue;
             }
@@ -74,5 +76,22 @@ public class Assignment03PartE02
         b.run(n);
         System.out.println("Done");
         b.displayTime();
+    }
+
+    private static void requestExit()
+    {
+        char response = 0;
+        while(!(response == 'y' || response == 'n'))
+        {
+            System.out.println("Would you lke to quit? (y/n)");
+            try {
+                response = input.nextLine().toLowerCase().charAt(0);
+            } catch(StringIndexOutOfBoundsException e) {
+                response = 0;
+            }
+        }
+
+        if(response == 'y')
+            System.exit(200);
     }
 }
