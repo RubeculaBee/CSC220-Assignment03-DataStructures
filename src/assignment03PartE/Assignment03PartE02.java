@@ -14,23 +14,19 @@ public class Assignment03PartE02
 {
     public static void main(String[] args)
     {
-        Timer myTimer = new Timer();
-
         int n = 50000;
+        LoopA a = new LoopA();
+        LoopB b = new LoopB();
 
         System.out.println("Loop A: ");
-        myTimer.start();
-        LoopA.run(n);
-        LoopA.runTime = myTimer.stop();
-        LoopA.displayTime();
+        a.run(n);
+        a.displayTime();
 
         System.out.println();
 
         System.out.println("Loop B: ");
-        myTimer.start();
-        LoopB.run(n);
-        LoopB.runTime = myTimer.stop();
-        LoopB.displayTime();
+        b.run(n);
+        b.displayTime();
         
     }
 }

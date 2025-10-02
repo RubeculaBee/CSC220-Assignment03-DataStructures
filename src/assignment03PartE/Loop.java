@@ -2,11 +2,19 @@ package assignment03PartE;
 
 abstract sealed class Loop
 {
-    static long runTime;
+    Timer timer = new Timer();
+    long runTime;
 
-    static void run(int n) {};
+    void run(int n)
+    {
+        timer.start();
+        doLoop(n);
+        runTime = timer.stop();
+    };
 
-    static void displayTime()
+    abstract void doLoop(int n);
+
+    void displayTime()
     {
         System.out.printf("Time Elapsed: %5dms\n", runTime);
     }
@@ -14,10 +22,9 @@ abstract sealed class Loop
 
 final class LoopA extends Loop
 {
-    static void run(int n)
+    void doLoop(int n)
     {
         int sum = 0, i, j;
-        
         for (i = 1; i <= n; i++)
             for (j = 1; j <= 10000; j++)
                 sum = sum + j;
@@ -26,10 +33,9 @@ final class LoopA extends Loop
 
 final class LoopB extends Loop
 {
-    static void run(int n)
+    void doLoop(int n)
     {
         int sum = 0, i, j;
-
         for (i = 1; i <= n; i++)
             for (j = 1; j <= n; j++)
                 sum = sum + j;
