@@ -10,7 +10,6 @@
 
 package assignment03PartE;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Assignment03PartE02
@@ -26,16 +25,14 @@ public class Assignment03PartE02
         {
             System.out.println();
 
-            System.out.println("Please choose a value of n for each loop");
+            System.out.println("Please choose a value of n for the each loop (or type ! to quit)");
             n = getInput();
-
+            if(n == -1)
+                break;
+            
             System.out.println();
 
             testTimer();
-            
-            System.out.println();
-            
-            requestExit();
         }
     }
 
@@ -45,10 +42,14 @@ public class Assignment03PartE02
         while(true)
         {
             System.out.print("  n = ");
+            String response = input.nextLine();
 
+            if(response.equals("!"))
+                return -1;
+            
             try {
-                n = input.nextInt();
-            } catch (InputMismatchException e) {
+                n = Integer.parseInt(response);
+            } catch (NumberFormatException e) {
                 System.err.println("You must enter an Integer.");
                 continue;
             }
@@ -76,22 +77,5 @@ public class Assignment03PartE02
         b.run(n);
         System.out.println("Done");
         b.displayTime();
-    }
-
-    private static void requestExit()
-    {
-        char response = 0;
-        while(!(response == 'y' || response == 'n'))
-        {
-            System.out.println("Would you lke to quit? (y/n)");
-            try {
-                response = input.nextLine().toLowerCase().charAt(0);
-            } catch(StringIndexOutOfBoundsException e) {
-                response = 0;
-            }
-        }
-
-        if(response == 'y')
-            System.exit(200);
     }
 }
