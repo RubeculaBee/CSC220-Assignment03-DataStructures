@@ -10,23 +10,69 @@
 
 package assignment03PartE;
 
+import java.util.Scanner;
+
 public class Assignment03PartE02
 {
+    static int n;
+    static LoopA a = new LoopA();
+    static LoopB b = new LoopB();
+
     public static void main(String[] args)
     {
-        int n = 50000;
-        LoopA a = new LoopA();
-        LoopB b = new LoopB();
+        while(true)
+        {
+            System.out.println("Please choose a value of n for the each loop (or type ! for automatic)");
+            n = getInput();
 
-        System.out.println("Loop A: ");
+            System.out.println();
+            if(n >= 0)
+                testTimer();
+        }
+    }
+
+    private static int getInput()
+    {
+        Scanner input = new Scanner(System.in);
+        int n;
+
+        while(true)
+        {
+            System.out.print("  n = ");
+            String response = input.nextLine();
+
+            if(response == "!")
+                return -1;
+            
+            try {
+                n = Integer.parseInt(response);
+            } catch (NumberFormatException e) {
+                System.err.println("You must enter an Integer.");
+                continue;
+            }
+
+            if(n <= -1)
+            {
+                System.err.println("You must enter a Non-Negative Integer");
+                continue;
+            }
+
+            return n;
+        }
+    }
+
+    private static void testTimer()
+    {
+        System.out.print("Loop A: ");
         a.run(n);
+        System.out.println("Done");
         a.displayTime();
 
         System.out.println();
 
-        System.out.println("Loop B: ");
+        System.out.print("Loop B: ");
         b.run(n);
+        System.out.println("Done");
         b.displayTime();
-        
     }
 }
